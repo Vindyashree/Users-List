@@ -1,6 +1,21 @@
 import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
+import SvgIcon from '@material-ui/core/SvgIcon';
+import CallIcon from '@material-ui/icons/Call';
+import MailIcon from '@material-ui/icons/Mail';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
+function HomeIcon(props) {
+  return (
+    <SvgIcon {...props}>
+      <path d='M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z' />
+    </SvgIcon>
+  );
+}
 
 export default class UserProfile extends React.Component {
   state = {
@@ -19,17 +34,37 @@ export default class UserProfile extends React.Component {
       });
 
     if (!this.state.loading) {
-      return <div>Loading.....</div>;
+      return <LinearProgress />;
     }
     return (
-      <div class='ProfileContainer'>
+      <div className='ProfileContainer'>
         <Link to='/List-Users'>GoBack</Link>
+
         <div className='Userprofile'>
-          ID : {this.state.profile.id} <br />
-          Name : {this.state.profile.name} <br />
-          UserName : {this.state.profile.username} <br />
-          Email : {this.state.profile.email} <br />
-          Phone : {this.state.profile.phone} <br />
+          <figure style={{ float: 'left' }}>
+            <img
+              className='userprofileimage'
+              src='https://cdn.imgbin.com/21/23/1/imgbin-computer-icons-female-user-profile-avatar-material-x1Zz1EDVQQssccaQu0dy0VFGy.jpg'
+              alt='image'
+            />
+            <figcaption>{this.state.profile.name}</figcaption>
+          </figure>
+
+          <div className='information'>
+            {this.state.profile.username}
+            <br />
+            <MailIcon color='secondary' /> {this.state.profile.email}
+            <br />
+            <CallIcon color='secondary' /> {this.state.profile.phone}
+            <br />
+            <HomeIcon color='secondary' /> {this.state.profile.address.street}
+            <br />
+            {this.state.profile.address.suite}
+            <br />
+            {this.state.profile.address.city}
+            <br />
+            {this.state.profile.address.zipcode}
+          </div>
         </div>
       </div>
     );
