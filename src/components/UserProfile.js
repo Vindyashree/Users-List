@@ -31,8 +31,7 @@ export default class UserProfile extends React.Component {
         `https://jsonplaceholder.typicode.com/users/${this.props.match.params.id}`
       )
       .then(response => {
-        this.setState({ profile: response.data });
-        this.setState({ loading: true });
+        this.setState({ profile: response.data, loading: true });
       });
 
     if (!this.state.loading) {
