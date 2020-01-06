@@ -24,8 +24,7 @@ export default class UserProfile extends React.Component {
     profile: [],
     loading: false
   };
-
-  render() {
+  componentDidMount() {
     axios
       .get(
         `https://jsonplaceholder.typicode.com/users/${this.props.match.params.id}`
@@ -33,7 +32,9 @@ export default class UserProfile extends React.Component {
       .then(response => {
         this.setState({ profile: response.data, loading: true });
       });
+  }
 
+  render() {
     if (!this.state.loading) {
       return <LinearProgress />;
     }
