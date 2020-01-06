@@ -8,6 +8,8 @@ import CallIcon from '@material-ui/icons/Call';
 import MailIcon from '@material-ui/icons/Mail';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
 
 function HomeIcon(props) {
   return (
@@ -39,33 +41,39 @@ export default class UserProfile extends React.Component {
     return (
       <div className='ProfileContainer'>
         <Link to='/List-Users'>GoBack</Link>
-
-        <div className='Userprofile'>
-          <figure style={{ float: 'left' }}>
-            <img
-              className='userprofileimage'
-              src='https://cdn.imgbin.com/21/23/1/imgbin-computer-icons-female-user-profile-avatar-material-x1Zz1EDVQQssccaQu0dy0VFGy.jpg'
-              alt='image'
-            />
-            <figcaption>{this.state.profile.name}</figcaption>
-          </figure>
-
-          <div className='information'>
-            {this.state.profile.username}
-            <br />
-            <MailIcon color='secondary' /> {this.state.profile.email}
-            <br />
-            <CallIcon color='secondary' /> {this.state.profile.phone}
-            <br />
-            <HomeIcon color='secondary' /> {this.state.profile.address.street}
-            <br />
-            {this.state.profile.address.suite}
-            <br />
-            {this.state.profile.address.city}
-            <br />
-            {this.state.profile.address.zipcode}
-          </div>
-        </div>
+        <Card variant='outlined' className='Userprofile'>
+          <CardContent>
+            {' '}
+            <div>
+              <div>
+                <figure className='userprofileimage'>
+                  <img
+                    className='userprofileimage'
+                    src='https://cdn.imgbin.com/21/23/1/imgbin-computer-icons-female-user-profile-avatar-material-x1Zz1EDVQQssccaQu0dy0VFGy.jpg'
+                    alt='image'
+                  />
+                  <figcaption>{this.state.profile.name}</figcaption>
+                </figure>
+              </div>
+              <div className='information'>
+                <strong>{this.state.profile.username}</strong>
+                <br />
+                <MailIcon color='secondary' /> {this.state.profile.email}
+                <br />
+                <CallIcon color='secondary' /> {this.state.profile.phone}
+                <br />
+                <HomeIcon color='secondary' />{' '}
+                {this.state.profile.address.street}
+                <br />
+                {this.state.profile.address.suite}
+                <br />
+                {this.state.profile.address.city}
+                <br />
+                {this.state.profile.address.zipcode}
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
     );
   }
